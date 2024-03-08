@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{%  load crispy_forms_tags %}
+{% block content %}
+
+<div class="container-xxl py-5 bg-dark hero-header mb-5">
+    <div class="container text-center my-5 pt-5 pb-4">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Login Account</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center text-uppercase">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">Menu</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+</div>
+<h1 class ="text-center text-primary mt-5">{{type}} Account</h1>
+<form style="width:50% ; margin : auto" method="post">
+    {% csrf_token %}
+    {{form | crispy}}
+
+<button class="btn btn-warning">Login </button>
+</form>
+
+{% endblock %}

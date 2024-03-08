@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-xxl py-5 bg-dark hero-header mb-5">
+    <div class="container text-center my-5 pt-5 pb-4">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Confirm Your Order</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center text-uppercase">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">Menu</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+</div>
+    <!-- templates/order_confirmation.html -->
+<h1 class="text-center">Order Confirmation</h1>
+<p class="text-center">Your order has been placed successfully. Thank you!</p>
+<p class="text-center">Total Cost: {{ total_cost }}</p>
+<p>{{discount}}</p>
+
+<a href="{% url 'order_history' %}" class="btn btn-info w-100">View Order History </a>
+
+{% endblock content %}
+    

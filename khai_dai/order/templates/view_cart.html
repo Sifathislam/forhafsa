@@ -1,0 +1,43 @@
+<!-- templates/view_cart.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-xxl py-5 bg-dark hero-header mb-5">
+  <div class="container text-center my-5 pt-5 pb-4">
+      <h1 class="display-3 text-white mb-3 animated slideInDown">View Cart</h1>
+      <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-center text-uppercase">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Pages</a></li>
+              <li class="breadcrumb-item text-white active" aria-current="page">Menu</li>
+          </ol>
+      </nav>
+  </div>
+</div>
+</div>
+{% if cart_items|length == 0 %}
+<h1 class="text-center">No items added to your cart. <a href="{% url 'homepage' %}">Browse the menu</a> to add items.</h1>
+
+{% else %}
+
+<div class="row gap-5 m-4 ms-5 ps-5">
+    <h3 class="text-dark">Total Price: {{ cart.get_total_price }}</h3>
+    {% for val in cart_items %}
+    <div class="card col-3" style="width: 18rem;">
+        <img src="{{val.food_item.image.url}}" class="card-img-top" alt="image of the Car">
+        <div class="card-body text-center d-flex flex-column justify-content-center">
+          <h5 class="card-title">{{val.food_item.name}}</h5>
+          <h6 class="card-title text-secondary">{{val.food_item.price}}$</h6>
+          <h6 class="card-title">{{val.food_item.category.name}}</h6>
+          <h6 class="card-title"> Quantity: {{ val.quantity }}</h6>
+          <h6 class="card-title">{{val.food_item.description | truncatewords:20 }}</h6>
+          <a class="btn btn-danger w-100 m-auto" aria-current="page" href="{% url 'remove_from_cart' cart_item_id=val.id %}">Remove From Cart</a>
+      
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <a href="{% url 'place_order' %}" class="btn btn-success w-100 m-auto">Place Order</a>
+    {% endif %}
+    
+{% endblock %}
